@@ -1,2 +1,2 @@
 # job4j
-# edit from temp
+# edit from idea
