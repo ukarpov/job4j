@@ -18,6 +18,7 @@ public class SqMaxTest {
 
         assertThat(SqMax.max(1, 1, 1,1), is(1));
 
+        assertThat(SqMax.max(4, 2, 5,3), is(5));
     }
 
 
