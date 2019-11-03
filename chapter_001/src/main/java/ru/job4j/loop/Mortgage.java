@@ -13,11 +13,7 @@ public class Mortgage {
 
             rest -=salary;
 
-            if (year >= 100) {
-                break;
-            }
-
-        } while(rest > 0);
+        } while((rest > 0)&&(year < 100));
 
         return year;
     }

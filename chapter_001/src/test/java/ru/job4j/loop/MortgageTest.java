@@ -26,4 +26,11 @@ public class MortgageTest {
         int year = mortgage.year(1000, 100, 5);
         assertThat(year, is(15));
     }
+
+    @Test
+    public void whenTooMuchYear() {
+        Mortgage mortgage = new Mortgage();
+        int year = mortgage.year(5000, 100, 10);
+        assertThat(year, is(100));
+    }
 }
