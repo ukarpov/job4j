@@ -1,5 +1,12 @@
 package ru.job4j.calculator;
 
+/**
+ * Calculator
+ *
+ * Арифметические операции
+ *
+ * @author YKarpov
+ */
 public class Calculator {
     public static void add(double first, double second) {
         double result =  first + second;
@@ -21,6 +28,13 @@ public class Calculator {
         System.out.println(first + "-" + second + " = " + result);
     }
 
+    /**
+     * Main
+     *
+     * Вызов методов класса
+     *
+     * @param args - входные параметры
+     */
     public static void main(String[] args) {
         add(1, 1);
         div(4, 2);
