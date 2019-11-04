@@ -4,8 +4,10 @@ public class Check {
     public boolean mono(boolean[] data) {
         boolean result = true;
         for (int i=1; i<data.length; i++) {
-            result &= (data[i]==data[0]);
-            if(!result) break;
+            if(data[i]!=data[0]) {
+                result = false;
+                break;
+            }
         }
         return result;
     }
