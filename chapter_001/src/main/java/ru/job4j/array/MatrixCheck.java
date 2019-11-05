@@ -1,7 +1,7 @@
 package ru.job4j.array;
 
 public class MatrixCheck {
-    public static boolean isWin(char[][] board) {
+    public static boolean isWin2(char[][] board) {
         boolean result = false;
 
         for (int row = 0; row < board.length; row++) {
@@ -36,6 +36,29 @@ public class MatrixCheck {
             }
         }
 
+        return result;
+    }
+
+    public static boolean isWin(char[][] board) {
+        boolean result = false;
+        for (int row = 0; row < board.length; row++) {
+            if (board[row][row] == 'X') {
+                int rowXCount = 0;
+                int colXCount = 0;
+                for (int col = 0; col < board.length; col++) {
+                    if (board[row][col] == 'X') {
+                        rowXCount++;
+                    }
+                    if (board[col][row] == 'X') {
+                        colXCount++;
+                    }
+                }
+                if (rowXCount == board.length || colXCount == board.length) {
+                    result = true;
+                }
+                break;
+            }
+        }
         return result;
     }
 
