@@ -4,19 +4,35 @@ public class MatrixCheck {
     public static boolean isWin(char[][] board) {
         boolean result = false;
 
-        int[] lines = new int[board.length * 2];
-
         for (int row = 0; row < board.length; row++) {
+            int rowXCount = 0;
             for (int col = 0; col < board.length; col++) {
-                //char sign = board[row][cell];
-                int signNum = (board[row][col] == 'X') ? 1 : 0;
-                lines[row] += signNum;
-                lines[col + board.length] += signNum;
+                char sign = board[row][col];
+                int colXCount = 0;
 
-                if (lines[row] == board.length || lines[col + board.length] == board.length) {
+                if (sign == 'X') {
+                    rowXCount++;
+
+                    // На первой строке массива если символ = X, то проверяем столбец
+                    if (row == 0) {
+                        colXCount++;
+                        for (int row2 = 1; row2 < board.length; row2++) {
+                            if (board[row2][col] == 'X') {
+                                colXCount++;
+                            }
+                        }
+                    }
+                }
+
+                if (colXCount == board.length) {
                     result = true;
                     break;
                 }
+            }
+
+            if (result || rowXCount == board.length) {
+                result = true;
+                break;
             }
         }
 

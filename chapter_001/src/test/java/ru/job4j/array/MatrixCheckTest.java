@@ -69,7 +69,7 @@ public class MatrixCheckTest {
                 {'_', '_', 'X', '_', '_'},
         };
         boolean result = MatrixCheck.isWin(input);
-        assertThat(result, is(false));
+        assertThat(result, is(true));
     }
 
     @Test
