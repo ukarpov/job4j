@@ -28,7 +28,8 @@ public class Main {
 //- размер файла.
         long fileSize = 83_772_309;
 	    
-	    if (Double.MAX_VALUE > Long.MAX_VALUE) System.out.println("Double");
-
+	    if (Double.MAX_VALUE > Long.MAX_VALUE) {
+            System.out.println("Double");
+        }
     }
 }

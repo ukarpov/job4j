@@ -7,7 +7,7 @@ public class DummyBot {
             rsl = "Привет, умник.";
         } else if ("Пока.".equals(question)) {
             rsl = "До скорой встречи.";
-        };
+        }
 
         return rsl;
     }

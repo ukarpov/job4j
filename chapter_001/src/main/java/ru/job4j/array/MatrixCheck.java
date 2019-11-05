@@ -4,16 +4,16 @@ public class MatrixCheck {
     public static boolean isWin(char[][] board) {
         boolean result = false;
 
-        int[] lines = new int[board.length*2];
+        int[] lines = new int[board.length * 2];
 
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board.length; col++) {
                 //char sign = board[row][cell];
-                int signNum = (board[row][col]=='X') ? 1 : 0;
+                int signNum = (board[row][col] == 'X') ? 1 : 0;
                 lines[row] += signNum;
-                lines[col+board.length] += signNum;
+                lines[col + board.length] += signNum;
 
-                if (lines[row] == board.length || lines[col+board.length]==board.length) {
+                if (lines[row] == board.length || lines[col + board.length] == board.length) {
                     result = true;
                     break;
                 }
