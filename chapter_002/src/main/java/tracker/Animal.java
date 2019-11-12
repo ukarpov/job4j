@@ -1,12 +1,15 @@
 package tracker;
 
 public class Animal {
-    public Animal() {
+    private String name;
+
+    public Animal(String name) {
         super();
-        System.out.println("Animal");
+        this.name = name;
+        System.out.println("Animal: " + name);
     }
 
     public static void main(String[] args) {
-        Tiger sherkhan = new Tiger();
+        Tiger sherkhan = new Tiger("Sherkhan");
     }
 }
