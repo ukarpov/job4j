@@ -82,7 +82,7 @@ public class Tracker {
         Item[] foundByName = new Item[this.position];
         int idx = 0;
         for (int i = 0; i < this.position; i++) {
-            if (this.items[i] != null && this.items[i].getName().equals(key)) {
+            if (this.items[i].getName().equals(key)) {
                 foundByName[idx++] = this.items[i];
             }
         }
@@ -112,7 +112,7 @@ public class Tracker {
     private int findIndexById(String id) {
         int index = -1;
         for (int i = 0; i < this.position; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
+            if (items[i].getId().equals(id)) {
                 index = i;
                 break;
             }
