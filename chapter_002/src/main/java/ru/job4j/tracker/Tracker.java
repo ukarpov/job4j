@@ -40,6 +40,7 @@ public class Tracker {
         boolean result = false;
         int idx = findIndexById(id);
         if (idx >= 0) {
+            item.setId(id);
             this.items[idx] = item;
             result = true;
         }
@@ -56,11 +57,7 @@ public class Tracker {
         int idx = findIndexById(id);
         if (idx >= 0) {
             System.arraycopy(this.items, idx + 1, this.items, idx, this.items.length - idx - 1);
-            // ставим null для хвоста массива
-            for (int i = this.position; i < this.items.length; i++) {
-                this.items[i] = null;
-            }
-            this.position--;
+            this.items[position--] = null;
             result = true;
         }
         return result;
@@ -90,9 +87,8 @@ public class Tracker {
             }
         }
         // trim array
-        Item[] result = null;
+        Item[] result = new Item[idx];
         if (idx > 0) {
-            result = new Item[idx];
             System.arraycopy(foundByName, 0, result, 0, idx);
         }
         return result;
@@ -115,7 +111,7 @@ public class Tracker {
      */
     private int findIndexById(String id) {
         int index = -1;
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < this.position; i++) {
             if (items[i] != null && items[i].getId().equals(id)) {
                 index = i;
                 break;
