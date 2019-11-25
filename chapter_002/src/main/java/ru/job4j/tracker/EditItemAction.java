@@ -9,11 +9,9 @@ public class EditItemAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         String itemId = input.askStr("Enter id: ");
-        Item itm = tracker.findById(itemId);
-        if (itm == null) {
+        Item itm = new Item(input.askStr("Enter new name: "));
+        if (!tracker.replace(itemId, itm)) {
             System.out.println("Item not found!");
-        } else {
-            itm.setName(input.askStr("Enter new name: "));
         }
         return true;
     }
