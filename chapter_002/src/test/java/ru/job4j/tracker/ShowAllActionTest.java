@@ -18,7 +18,7 @@ public class ShowAllActionTest  {
         Tracker tracker = new Tracker();
         Item item = new Item("fix bug");
         tracker.add(item);
-        ShowAllAction act = new ShowAllAction();
+        ShowAllAction act = new ShowAllAction(0);
         act.execute(new StubInput(new String[] {}), tracker);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add(item.getId() + ": " + item.getName())

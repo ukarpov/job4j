@@ -1,9 +1,9 @@
 package ru.job4j.tracker;
 
-public class FindItemByIdAction implements UserAction {
-    @Override
-    public String name() {
-        return "=== Find Item by Id ====";
+public class FindItemByIdAction extends AbstractAction {
+
+    public FindItemByIdAction(int key) {
+        super(key, "=== Find Item by Id ====");
     }
 
     @Override

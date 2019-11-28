@@ -14,7 +14,7 @@ public class DeleteItemActionTest {
         String[] answers = {
                 item.getId()
         };
-        new DeleteItemAction().execute(new StubInput(answers), tracker);
+        new DeleteItemAction(0).execute(new StubInput(answers), tracker);
         Item replaced = tracker.findById(item.getId());
         assertNull(replaced);
     }
