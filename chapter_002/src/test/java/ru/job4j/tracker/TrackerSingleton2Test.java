@@ -10,15 +10,7 @@ public class TrackerSingleton2Test {
     public void whenCheckTrackerInstances() {
         TrackerSingleton2 tracker1 = TrackerSingleton2.getInstance();
         TrackerSingleton2 tracker2 = TrackerSingleton2.getInstance();
-        Item item1 = new Item("test1");
-        tracker1.add(item1);
-        Item item2 = new Item("test2");
-        tracker2.add(item2);
-        Item[] allItems = tracker1.findAll();
-        Item[] testRes = {item1, item2};
-        assertArrayEquals(testRes, allItems);
-        tracker2.clear();
-        assertArrayEquals(new Item[]{}, tracker1.findAll());
+        assertSame(tracker1, tracker2);
     }
 
     @Test
