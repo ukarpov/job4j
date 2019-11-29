@@ -119,4 +119,14 @@ public class Tracker {
         }
         return index;
     }
+
+    /**
+     * Удаление всех заявок из массива
+     */
+    public void clear() {
+        for (int i = 0; i < this.position; i++) {
+            this.items[i] = null;
+        }
+        this.position = 0;
+    }
 }
