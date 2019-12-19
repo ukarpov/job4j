@@ -8,7 +8,7 @@ public class Bug extends Item {
     }
 
     public static void main(String[] args) {
-        int[] a1 = {0,1,2,3,4,5,6,7,8,9};
+        int[] a1 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         int[] a2 = {-1};
 
         int idx = 3;

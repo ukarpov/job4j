@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringJoiner;
 
 import static org.hamcrest.core.Is.is;
@@ -16,7 +18,7 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction(0);
-        new StartUI().init(input, new Tracker(), new UserAction[] {action});
+        new StartUI().init(input, new Tracker(), new ArrayList<>(List.of(action)));
         assertThat(action.isCall(), is(true));
     }
 
@@ -29,7 +31,7 @@ public class StartUITest {
                 new String[] {"0"}
         );
         StubAction action = new StubAction(0);
-        new StartUI().init(input, new Tracker(), new UserAction[] {action});
+        new StartUI().init(input, new Tracker(), new ArrayList<>(List.of(action)));
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
                 .add("Menu.")
                 .add("0. Stub action")

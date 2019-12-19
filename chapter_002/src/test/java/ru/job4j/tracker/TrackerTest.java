@@ -1,6 +1,10 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
@@ -41,9 +45,9 @@ public class TrackerTest {
         tracker.add(i1);
         Item i2 = new Item("test2");
         tracker.add(i2);
-        Item[] allItems = tracker.findAll();
-        Item[] testRes = {i1, i2};
-        assertArrayEquals(testRes, allItems);
+        ArrayList<Item> allItems = tracker.findAll();
+        ArrayList<Item> testRes = new ArrayList<>(List.of(i1, i2));
+        assertEquals(testRes, allItems);
     }
 
     @Test
@@ -55,9 +59,9 @@ public class TrackerTest {
         tracker.add(i2);
         Item i3 = new Item("test1");
         tracker.add(i3);
-        Item[] allItems = tracker.findByName("test1");
-        Item[] testRes = {i1, i3};
-        assertArrayEquals(testRes, allItems);
+        ArrayList<Item> allItems = tracker.findByName("test1");
+        ArrayList<Item> testRes = new ArrayList<>(List.of(i1, i3));
+        assertEquals(testRes, allItems);
     }
 
     @Test
@@ -69,8 +73,8 @@ public class TrackerTest {
         tracker.add(i2);
         Item i3 = new Item("test1");
         tracker.add(i3);
-        Item[] allItems = tracker.findByName("test5");
-        assertArrayEquals(new Item[]{}, allItems);
+        ArrayList<Item> allItems = tracker.findByName("test5");
+        assertEquals(new ArrayList<Item>(), allItems);
     }
 
     @Test
@@ -81,6 +85,6 @@ public class TrackerTest {
         Item i2 = new Item("test2");
         tracker.add(i2);
         tracker.clear();
-        assertArrayEquals(new Item[]{}, tracker.findAll());
+        assertEquals(new ArrayList<Item>(), tracker.findAll());
     }
 }

@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+
 public class TrackerSingleton4 {
     private final Tracker t;
 
@@ -51,7 +53,7 @@ public class TrackerSingleton4 {
      * Возвращает массив заявок
      * @return новый массив не-null элементов
      */
-    public Item[] findAll() {
+    public ArrayList<Item> findAll() {
         return t.findAll();
     }
 
@@ -60,7 +62,7 @@ public class TrackerSingleton4 {
      * @param key
      * @return Массив найденных элементов
      */
-    public Item[] findByName(String key) {
+    public ArrayList<Item> findByName(String key) {
         return t.findByName(key);
     }
 
