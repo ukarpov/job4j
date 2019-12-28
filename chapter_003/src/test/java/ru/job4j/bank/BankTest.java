@@ -53,7 +53,7 @@ public class BankTest {
         Account a2 = new Account(a2Reqs);
         b.addAccountToUser(u1Passport, a2);
         assertFalse(b.transferMoney(u1Passport, a1Reqs, "NoUser", a2Reqs, 300));
-        assertThat(a1.getValue(), is(1000));
+        assertThat(a1.getValue(), is(1000.0));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class BankTest {
         a1.addAmount(1000);
         b.addAccountToUser(u1Passport, a1);
         assertFalse(b.transferMoney(u1Passport, a1Reqs, u2Passport, "NoAccount", 300));
-        assertThat(a1.getValue(), is(1000));
+        assertThat(a1.getValue(), is(1000.0));
     }
 
     @Test
