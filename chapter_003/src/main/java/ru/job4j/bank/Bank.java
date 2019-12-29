@@ -45,23 +45,22 @@ public class Bank {
     }
 
     public List<Account> getUserAccounts(String passport) {
-        List<Account> res = null;
+        List<Account> res;
         User u = findUser(passport);
         if (u != null) {
             res = userAccounts.get(u);
+        } else {
+            res = new ArrayList<>();
         }
         return res;
     }
 
     private Account findUserAccount(String passport, String requisites) {
         Account res = null;
-        List<Account> accs = getUserAccounts(passport);
-        if (accs != null) {
-            for (Account a : accs) {
-                if (a.getRequisites().equals(requisites)) {
-                    res = a;
-                    break;
-                }
+        for (Account a : getUserAccounts(passport)) {
+            if (a.getRequisites().equals(requisites)) {
+                res = a;
+                break;
             }
         }
         return res;
