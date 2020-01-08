@@ -4,18 +4,25 @@ import java.util.Objects;
 
 public class Student {
     private int score;
+    private String name;
 
-    public Student(int score) {
+    public Student(String name, int score) {
         this.score = score;
+        this.name = name;
     }
 
     public int getScore() {
         return score;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Student{"
+                + "name=" + name
                 + "score=" + score
                 + '}';
     }
@@ -29,11 +36,12 @@ public class Student {
             return false;
         }
         Student student = (Student) o;
-        return score == student.score;
+        return name.equals(student.name)
+               && score == student.score;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(score);
+        return Objects.hash(name, score);
     }
 }
