@@ -18,4 +18,16 @@ public class ProfilesTest {
         List<Address> allAddr = Profiles.collect(profiles);
         assertThat(allAddr, is(Arrays.asList(adr1, adr2, adr3)));
     }
+
+    @Test
+    public void whenDistinctAndSorted() {
+        Address adr1 = new Address("City3", "Street3", 3, 300);
+        Address adr2 = new Address("City1", "Street1", 1, 100);
+        Address adr3 = new Address("City1", "Street1", 1, 100);
+        Address adr4 = new Address("City1", "Street1", 1, 100);
+        Address adr5 = new Address("City2", "Street2", 2, 200);
+        List<Profile> profiles = Arrays.asList(new Profile(adr1), new Profile(adr2), new Profile(adr3), new Profile(adr4), new Profile(adr5));
+        List<Address> allAddr = Profiles.collect(profiles);
+        assertThat(allAddr, is(Arrays.asList(adr2, adr5, adr1)));
+    }
 }
