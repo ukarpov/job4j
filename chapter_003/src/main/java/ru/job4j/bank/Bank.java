@@ -1,9 +1,6 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Bank {
     private Map<User, List<Account>> userAccounts;
@@ -36,10 +33,9 @@ public class Bank {
 
     private User findUser(String passport) {
         User res = null;
-        for (User u : userAccounts.keySet()) {
-            if (u.getPassport().equals(passport)) {
-                res = u;
-            }
+        Optional<User> optUser = userAccounts.keySet().stream().filter(u -> u.getPassport().equals(passport)).findAny();
+        if (optUser.isPresent()) {
+            res = optUser.get();
         }
         return res;
     }
@@ -57,11 +53,9 @@ public class Bank {
 
     private Account findUserAccount(String passport, String requisites) {
         Account res = null;
-        for (Account a : getUserAccounts(passport)) {
-            if (a.getRequisites().equals(requisites)) {
-                res = a;
-                break;
-            }
+        Optional<Account> optAcc = getUserAccounts(passport).stream().filter(a -> a.getRequisites().equals(requisites)).findAny();
+        if (optAcc.isPresent()) {
+            res = optAcc.get();
         }
         return res;
     }
