@@ -54,4 +54,22 @@ public class SchoolTest {
         Map<String, Student> studMap = sch.toMap(all);
         assertThat(studMap, is(expected));
     }
+
+    @Test
+    public void whenStudentsLevelOfBound() {
+        List<Student> all = new ArrayList<>();
+        int bound = 50;
+        List<Student> expected = new ArrayList<>();
+        for (int i = 10; i <= 100; i += 10) {
+            Student s = new Student("Name" + i, i);
+            all.add(s);
+            if (s.getScore() > bound) {
+                expected.add(s);
+            }
+        }
+        all.add(null);
+        School sch = new School();
+        List<Student> level = sch.levelOf(all, bound);
+        assertThat(level, is(expected));
+    }
 }
