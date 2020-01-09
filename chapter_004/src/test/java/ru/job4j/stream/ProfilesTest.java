@@ -11,23 +11,23 @@ import static org.junit.Assert.assertThat;
 public class ProfilesTest {
     @Test
     public void whenGetAddresses() {
-        Address adr1 = new Address("City1", "Street1", 1, 100);
-        Address adr2 = new Address("City2", "Street2", 2, 200);
-        Address adr3 = new Address("City3", "Street3", 3, 300);
-        List<Profile> profiles = Arrays.asList(new Profile(adr1), new Profile(adr2), new Profile(adr3));
-        List<Address> allAddr = Profiles.collect(profiles);
+        var adr1 = new Address("City1", "Street1", 1, 100);
+        var adr2 = new Address("City2", "Street2", 2, 200);
+        var adr3 = new Address("City3", "Street3", 3, 300);
+        var profiles = Arrays.asList(new Profile(adr1), new Profile(adr2), new Profile(adr3));
+        var allAddr = Profiles.collect(profiles);
         assertThat(allAddr, is(Arrays.asList(adr1, adr2, adr3)));
     }
 
     @Test
     public void whenDistinctAndSorted() {
-        Address adr1 = new Address("City3", "Street3", 3, 300);
-        Address adr2 = new Address("City1", "Street1", 1, 100);
-        Address adr3 = new Address("City1", "Street1", 1, 100);
-        Address adr4 = new Address("City1", "Street1", 1, 100);
-        Address adr5 = new Address("City2", "Street2", 2, 200);
-        List<Profile> profiles = Arrays.asList(new Profile(adr1), new Profile(adr2), new Profile(adr3), new Profile(adr4), new Profile(adr5));
-        List<Address> allAddr = Profiles.collect(profiles);
+        var adr1 = new Address("City3", "Street3", 3, 300);
+        var adr2 = new Address("City1", "Street1", 1, 100);
+        var adr3 = new Address("City1", "Street1", 1, 100);
+        var adr4 = new Address("City1", "Street1", 1, 100);
+        var adr5 = new Address("City2", "Street2", 2, 200);
+        var profiles = Arrays.asList(new Profile(adr1), new Profile(adr2), new Profile(adr3), new Profile(adr4), new Profile(adr5));
+        var allAddr = Profiles.collect(profiles);
         assertThat(allAddr, is(Arrays.asList(adr2, adr5, adr1)));
     }
 }
