@@ -32,12 +32,7 @@ public class Bank {
     }
 
     private User findUser(String passport) {
-        User res = null;
-        Optional<User> optUser = userAccounts.keySet().stream().filter(u -> u.getPassport().equals(passport)).findAny();
-        if (optUser.isPresent()) {
-            res = optUser.get();
-        }
-        return res;
+        return userAccounts.keySet().stream().filter(u -> u.getPassport().equals(passport)).findFirst().orElse(null);
     }
 
     public List<Account> getUserAccounts(String passport) {
@@ -52,12 +47,7 @@ public class Bank {
     }
 
     private Account findUserAccount(String passport, String requisites) {
-        Account res = null;
-        Optional<Account> optAcc = getUserAccounts(passport).stream().filter(a -> a.getRequisites().equals(requisites)).findAny();
-        if (optAcc.isPresent()) {
-            res = optAcc.get();
-        }
-        return res;
+        return getUserAccounts(passport).stream().filter(a -> a.getRequisites().equals(requisites)).findFirst().orElse(null);
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount)  {
