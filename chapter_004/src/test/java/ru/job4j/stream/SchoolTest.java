@@ -1,5 +1,6 @@
 package ru.job4j.stream;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
@@ -8,36 +9,33 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class SchoolTest {
+    private List<Student> allStudents = new ArrayList<>();
+
+    @Before
+    public void init() {
+        for (int i = 10; i <= 100; i += 10) {
+            allStudents.add(new Student("Name" + i, i));
+        }
+    }
+
     @Test
     public void whenRangeA() {
-        List<Student> all = new ArrayList<>();
-        for (int i = 10; i <= 100; i += 10) {
-            all.add(new Student("Name" + i, i));
-        }
         School sch = new School();
-        List<Student> classA = sch.collect(all, stud -> stud.getScore() >= 70 && stud.getScore() <= 100);
+        List<Student> classA = sch.collect(allStudents, stud -> stud.getScore() >= 70 && stud.getScore() <= 100);
         assertThat(classA, is(Arrays.asList(new Student("Name70", 70), new Student("Name80", 80), new Student("Name90", 90), new Student("Name100", 100))));
     }
 
     @Test
     public void whenRangeB() {
-        List<Student> all = new ArrayList<>();
-        for (int i = 10; i <= 100; i += 10) {
-            all.add(new Student("Name" + i, i));
-        }
         School sch = new School();
-        List<Student> classA = sch.collect(all, stud -> stud.getScore() >= 50 && stud.getScore() < 70);
+        List<Student> classA = sch.collect(allStudents, stud -> stud.getScore() >= 50 && stud.getScore() < 70);
         assertThat(classA, is(Arrays.asList(new Student("Name50", 50), new Student("Name60", 60))));
     }
 
     @Test
     public void whenRangeC() {
-        List<Student> all = new ArrayList<>();
-        for (int i = 10; i <= 100; i += 10) {
-            all.add(new Student("Name" + i, i));
-        }
         School sch = new School();
-        List<Student> classA = sch.collect(all, stud -> stud.getScore() < 50);
+        List<Student> classA = sch.collect(allStudents, stud -> stud.getScore() < 50);
         assertThat(classA, is(Arrays.asList(new Student("Name10", 10), new Student("Name20", 20), new Student("Name30", 30), new Student("Name40", 40))));
     }
 
@@ -57,19 +55,14 @@ public class SchoolTest {
 
     @Test
     public void whenStudentsLevelOfBound() {
-        List<Student> all = new ArrayList<>();
         int bound = 50;
         List<Student> expected = new ArrayList<>();
-        for (int i = 10; i <= 100; i += 10) {
-            Student s = new Student("Name" + i, i);
-            all.add(s);
-            if (s.getScore() > bound) {
-                expected.add(s);
-            }
+        for (int i = bound + 10; i <= 100; i += 10) {
+                expected.add(new Student("Name" + i, i));
         }
-        all.add(null);
+        allStudents.add(null);
         School sch = new School();
-        List<Student> level = sch.levelOf(all, bound);
+        List<Student> level = sch.levelOf(allStudents, bound);
         assertThat(level, is(expected));
     }
 }
