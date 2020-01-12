@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class UserTest {
     @Test
     public void whenAsc() {
-        Set<User> users = new TreeSet(Set.of (
+        Set<User> users = new TreeSet(Set.of(
                 new User("Petr", 32),
                 new User("Ivan", 31)
         ));
@@ -33,7 +33,7 @@ public class UserTest {
 
     @Test
     public void whenSortByAge() {
-        Set<User> users = new TreeSet<>(Set.of (
+        Set<User> users = new TreeSet<>(Set.of(
                 new User("Yuriy", 37),
                 new User("Yuriy", 31)
         ));
