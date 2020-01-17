@@ -29,11 +29,10 @@ public class EvenNumbersIterator implements Iterator {
 
     @Override
     public Object next() {
-        int idx = getNextEvenIndex(this.lastIndex);
-        if (idx < 0) {
+        if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        this.lastIndex = idx;
+        this.lastIndex = getNextEvenIndex(this.lastIndex);
         return nums[this.lastIndex++];
     }
 }
