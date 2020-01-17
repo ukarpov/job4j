@@ -20,13 +20,12 @@ public class MatrixIterator<I> implements Iterator<I> {
 
     @Override
     public I next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
         if (!(colIndex < matrix[rowIndex].length)) {
-            if (rowIndex < this.matrix.length - 1) {
-                rowIndex++;
-                colIndex = 0;
-            } else {
-                throw new NoSuchElementException();
-            }
+            rowIndex++;
+            colIndex = 0;
         }
         int res = matrix[rowIndex][colIndex++];
         return (I) (Integer) res;
