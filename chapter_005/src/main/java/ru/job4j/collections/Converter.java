@@ -6,23 +6,14 @@ import java.util.NoSuchElementException;
 public class Converter {
     Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
         return new Iterator<Integer>() {
-            private Iterator<Integer> currentIterator;
-
-            private boolean currentHasNext() {
-                return currentIterator != null && currentIterator.hasNext();
-            }
+            private Iterator<Integer> currentIterator = it.next();
 
             @Override
             public boolean hasNext() {
-                if (!currentHasNext()) {
-                    while (it.hasNext()) {
-                        currentIterator = it.next();
-                        if (currentIterator.hasNext()) {
-                            break;
-                        }
-                    }
+                while (!currentIterator.hasNext() && it.hasNext()) {
+                    currentIterator = it.next();
                 }
-                return currentHasNext();
+                return currentIterator.hasNext();
             }
 
             @Override
