@@ -1,6 +1,8 @@
 package ru.job4j.collections;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class SimpleArray<T> implements Iterable<T> {
     private final T[] arr;
@@ -8,24 +10,35 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public SimpleArray(int size) {
         arr = (T[]) new Object[size];
-        String[] a = new String[size];
     }
 
     public void add(T model) {
         arr[idx++] = model;
     }
 
+    private boolean checkIndexOutOfBounds(int index) {
+        return index < 0 || index >= idx;
+    }
+
     public void set(int index, T model) {
+        if (checkIndexOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
+        }
         arr[index] = model;
     }
 
     public void remove(int index) {
-        for (int i = index; i < arr.length; i++) {
-            arr[i] = (i == arr.length - 1) ? null : arr[i + 1];
+        if (checkIndexOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
         }
+        System.arraycopy(arr, index + 1, arr, index, arr.length - index - 1);
+        arr[arr.length - 1] = null;
     }
 
     public T get(int index) {
+        if (checkIndexOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
+        }
         return arr[index];
     }
 
@@ -41,6 +54,9 @@ public class SimpleArray<T> implements Iterable<T> {
 
             @Override
             public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
                 return arr[iterIndex++];
             }
         };
