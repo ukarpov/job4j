@@ -11,11 +11,13 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
 
     private int findIndexById(String id) {
         int result = -1;
+        int i = 0;
         for (T e : arr) {
-            result++;
             if (e != null && e.getId().equals(id)) {
+                result = i;
                 break;
             }
+            i++;
         }
         return result;
     }
@@ -28,9 +30,10 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
     @Override
     public boolean replace(String id, T model) {
         boolean result = true;
-        try {
-            arr.set(findIndexById(id), model);
-        } catch (IndexOutOfBoundsException e) {
+        int idx = findIndexById(id);
+        if (idx >= 0) {
+            arr.set(idx, model);
+        } else {
             result = false;
         }
         return result;
@@ -39,9 +42,10 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
     @Override
     public boolean delete(String id) {
         boolean result = true;
-        try {
-            arr.remove(findIndexById(id));
-        } catch (IndexOutOfBoundsException e) {
+        int idx = findIndexById(id);
+        if (idx >= 0) {
+            arr.remove(idx);
+        } else {
             result = false;
         }
         return result;
