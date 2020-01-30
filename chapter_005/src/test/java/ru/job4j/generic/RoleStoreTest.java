@@ -22,13 +22,13 @@ public class RoleStoreTest {
     @Test
     public void testAdd() {
         rs.add(new Role("Role3"));
-        assertTrue(rs.findById("Role3").getId().equals("Role3"));
+        assertTrue(rs.findById("Role3").get().getId().equals("Role3"));
     }
 
     @Test
     public void testReplaceTrue() {
         assertTrue(rs.replace("Role1", new Role("Role4")));
-        assertNull(rs.findById("Role1"));
+        assertTrue(rs.findById("Role1").isEmpty());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class RoleStoreTest {
     @Test
     public void testDelete() {
         assertTrue(rs.delete("Role2"));
-        assertNull(rs.findById("Role2"));
+        assertTrue(rs.findById("Role2").isEmpty());
     }
 
 }

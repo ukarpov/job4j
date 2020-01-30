@@ -1,5 +1,7 @@
 package ru.job4j.generic;
 
+import java.util.Optional;
+
 /**
  * @author Petr Arsentev (parsentev@yandex.ru)
  * @version $Id$
@@ -13,5 +15,5 @@ public interface Store<T extends Base> {
 
     boolean delete(String id);
 
-    T findById(String id);
+    Optional<T> findById(String id);
 }

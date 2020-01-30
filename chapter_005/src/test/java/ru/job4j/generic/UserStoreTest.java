@@ -21,13 +21,13 @@ public class UserStoreTest {
     @Test
     public void testAdd() {
         us.add(new User("Alex"));
-        assertTrue(us.findById("Alex").getId().equals("Alex"));
+        assertTrue(us.findById("Alex").get().getId().equals("Alex"));
     }
 
     @Test
     public void testReplaceTrue() {
         assertTrue(us.replace("Vasia", new User("Misha")));
-        assertNull(us.findById("Vasia"));
+        assertTrue(us.findById("Vasia").isEmpty());
     }
 
     @Test
@@ -38,6 +38,6 @@ public class UserStoreTest {
     @Test
     public void testDelete() {
         assertTrue(us.delete("Petia"));
-        assertNull(us.findById("Petia"));
+        assertTrue(us.findById("Petia").isEmpty());
     }
 }

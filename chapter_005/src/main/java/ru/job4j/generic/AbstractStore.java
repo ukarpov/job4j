@@ -2,6 +2,8 @@ package ru.job4j.generic;
 
 import ru.job4j.collections.SimpleArray;
 
+import java.util.Optional;
+
 public abstract class AbstractStore<T extends Base> implements Store<T> {
     private final SimpleArray<T> arr;
 
@@ -52,11 +54,11 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
     }
 
     @Override
-    public T findById(String id) {
-        T result = null;
+    public Optional<T> findById(String id) {
+        Optional<T> result = Optional.empty();
         for (T e : arr) {
             if (e != null && e.getId().equals(id)) {
-                result = e;
+                result = Optional.of(e);
                 break;
             }
         }
