@@ -12,12 +12,19 @@ import static org.junit.Assert.*;
 
 public class LinkedListContainerTest {
     private LinkedListContainer<String> ls;
+    private LinkedListContainer<String> lsDel;
 
     @Before
     public void initTestData() {
         ls = new LinkedListContainer<>();
         ls.add("A");
         ls.add("B");
+
+        lsDel = new LinkedListContainer<>();
+        lsDel.add("A");
+        lsDel.add("B");
+        lsDel.add("C");
+        lsDel.add("D");
     }
 
     @Test
@@ -49,6 +56,36 @@ public class LinkedListContainerTest {
             wasError = true;
         }
         assertTrue(wasError);
+    }
+
+    @Test
+    public void whenRemoveFirst() {
+        lsDel.remove(0);
+        StringBuilder sb = new StringBuilder();
+        for (String e : lsDel) {
+            sb.append(e);
+        }
+        assertEquals("CBA", sb.toString());
+    }
+
+    @Test
+    public void whenRemoveLast() {
+        lsDel.remove(3);
+        StringBuilder sb = new StringBuilder();
+        for (String e : lsDel) {
+            sb.append(e);
+        }
+        assertEquals("DCB", sb.toString());
+    }
+
+    @Test
+    public void whenRemoveMiddle() {
+        lsDel.remove(2);
+        StringBuilder sb = new StringBuilder();
+        for (String e : lsDel) {
+            sb.append(e);
+        }
+        assertEquals("DCA", sb.toString());
     }
 
 }

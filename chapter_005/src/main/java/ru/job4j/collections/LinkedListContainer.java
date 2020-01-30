@@ -19,8 +19,12 @@ public class LinkedListContainer<E> implements Iterable<E> {
         }
     }
 
+    private boolean checkIndexOutOfBounds(int index) {
+        return  index < 0 || index >= size;
+    }
+
     public E get(int index) {
-        if (index < 0 || index >= size) {
+        if (checkIndexOutOfBounds(index)) {
             throw new IndexOutOfBoundsException();
         }
         Node<E> element = first;
@@ -34,6 +38,25 @@ public class LinkedListContainer<E> implements Iterable<E> {
         Node<E> el = new Node(value, first);
         first = el;
         size++;
+        modCount++;
+    }
+
+    public void remove(int index) {
+        if (checkIndexOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (index == 0) {
+            first = first.next;
+        } else {
+            Node<E> prev = first;
+            Node<E> element2del = first.next;
+            for (int i = 1; i < index; i++) {
+                prev = element2del;
+                element2del = element2del.next;
+            }
+            prev.next = element2del.next;
+        }
+        size--;
         modCount++;
     }
 
