@@ -20,4 +20,8 @@ public class SimpleStack<T> {
         }
         return result;
     }
+
+    public boolean isEmpty() {
+        return count == 0;
+    }
 }
