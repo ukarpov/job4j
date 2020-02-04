@@ -1,7 +1,6 @@
 package ru.job4j.collections;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class SimpleSet<E> implements Iterable<E> {
     private final SimpleArrayList<E> sl;
@@ -25,21 +24,6 @@ public class SimpleSet<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new Iterator<E>() {
-            private int index = 0;
-
-            @Override
-            public boolean hasNext() {
-                return index < sl.getSize();
-            }
-
-            @Override
-            public E next() {
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
-                return sl.get(index++);
-            }
-        };
+        return sl.iterator();
     }
 }

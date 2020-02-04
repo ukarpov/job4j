@@ -1,9 +1,12 @@
 package ru.job4j.collections;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * Класс SimpleArrayList.
  */
-public class SimpleArrayList<E> {
+public class SimpleArrayList<E> implements Iterable<E> {
 
     private int size;
     private Node<E> first;
@@ -44,6 +47,28 @@ public class SimpleArrayList<E> {
      */
     public int getSize() {
         return this.size;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            private Node<E> currentNode = first;
+
+            @Override
+            public boolean hasNext() {
+                return currentNode != null;
+            }
+
+            @Override
+            public E next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                E result = currentNode.data;
+                currentNode = currentNode.next;
+                return result;
+            }
+        };
     }
 
     /**
