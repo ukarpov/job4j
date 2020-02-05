@@ -9,15 +9,19 @@ public class SimpleSet<E> implements Iterable<E> {
         sl = new SimpleArrayList<>();
     }
 
-    public void add(E e) {
-        boolean found = false;
+    private boolean findElement(E e) {
+        boolean result = false;
         for (int i = 0; i < sl.getSize(); i++) {
             if (sl.get(i).equals(e)) {
-                found = true;
+                result = true;
                 break;
             }
         }
-        if (!found) {
+        return result;
+    }
+
+    public void add(E e) {
+        if (!findElement(e)) {
             sl.add(e);
         }
     }
