@@ -34,4 +34,11 @@ public class TreeTest {
         Tree<Integer> tree = new Tree<>(1);
         assertFalse(tree.add(2, 3));
     }
+
+    @Test
+    public void whenAddTwiceThenFalse() {
+        Tree<Integer> tree = new Tree<>(1);
+        assertTrue(tree.add(1, 2));
+        assertFalse(tree.add(1, 2));
+    }
 }
