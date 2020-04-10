@@ -1,7 +1,6 @@
 package ru.job4j.collections;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Analize {
 
@@ -9,11 +8,16 @@ public class Analize {
         int found = 0;
         int changed = 0;
         int deleted = 0;
+
+        Map<User, User> currentMap = new HashMap<>();
+        for (User uc : current) {
+            currentMap.put(uc, uc);
+        }
         for (User uPrev : previous) {
-            int idx = current.indexOf(uPrev);
-            if (idx >= 0) {
+            User uc = currentMap.get(uPrev);
+            if (uc != null) {
                 found++;
-                if (!current.get(idx).name.equals(uPrev.name)) {
+                if (!uc.name.equals(uPrev.name)) {
                     changed++;
                 }
             } else {
@@ -42,6 +46,11 @@ public class Analize {
             if (o == null || getClass() != o.getClass()) return false;
             User user = (User) o;
             return id == user.id;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(id);
         }
     }
 
