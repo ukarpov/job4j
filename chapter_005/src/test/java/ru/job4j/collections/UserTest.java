@@ -23,6 +23,8 @@ public class UserTest {
         m.put(u1, "1st element");
         m.put(u2, "2nd element");
 
+        System.out.println(m.get(u2));
+
         System.out.println(m);
     }
 }
