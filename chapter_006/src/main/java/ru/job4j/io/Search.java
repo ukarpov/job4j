@@ -49,10 +49,10 @@ public class Search {
         }
     }
 
-    public static List<String> search(Path root, String ext) {
+    public static List<String> search(Path root, Predicate<Path> p) {
         List<String> result = new ArrayList<>();
         try {
-            Files.walkFileTree(root, new FileVisitorWithPredicate(path -> path.getFileName().toString().endsWith(ext), result));
+            Files.walkFileTree(root, new FileVisitorWithPredicate(p, result));
         } catch (Exception e) {
             e.printStackTrace();
         }

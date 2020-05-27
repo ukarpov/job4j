@@ -20,7 +20,7 @@ public class SearchTest {
         File f1 = folder.newFile("111.js");
         File f2 = folder.newFile("111.txt");
         File f3 = folder.newFile("222.js");
-        List<String> l = Search.search(f1.toPath().getParent(), "js");
+        List<String> l = Search.search(f1.toPath().getParent(), path -> path.getFileName().toString().endsWith("js"));
         assertTrue(l.size() == 2);
     }
 }
