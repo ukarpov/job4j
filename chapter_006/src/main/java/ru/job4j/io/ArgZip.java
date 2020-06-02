@@ -10,7 +10,16 @@ public class ArgZip {
 
     public ArgZip(String[] args) {
         this.args = args;
+    }
 
+    private void checkParam(String param, String msg) {
+        if (param.equals("")) {
+            System.out.println(msg);
+            is_valid = false;
+        }
+    }
+
+    public void validate() {
         for(int i = 0; i < this.args.length; i++) {
             switch (this.args[i]) {
                 case "-d":
@@ -33,14 +42,8 @@ public class ArgZip {
         checkParam(out, "Result file is not defined!");
     }
 
-    private void checkParam(String param, String msg) {
-        if (param.equals("")) {
-            System.out.println(msg);
-            is_valid = false;
-        }
-    }
-
     public boolean valid() {
+        validate();
         return is_valid;
     }
 

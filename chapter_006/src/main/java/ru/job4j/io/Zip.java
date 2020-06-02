@@ -54,6 +54,8 @@ public class Zip {
                                 Path.of(params.directory()),
                                 path -> !(path.getFileName().toString().endsWith(params.exclude())))),
                     new File(params.output()));
+        } else {
+            throw new IllegalArgumentException();
         }
     }
 
