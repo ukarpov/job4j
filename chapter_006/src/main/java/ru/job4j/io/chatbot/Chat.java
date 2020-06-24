@@ -3,14 +3,29 @@ package ru.job4j.io.chatbot;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Scanner;
+import java.util.*;
 
 public class Chat {
     private final File logFile;
     private final Scanner scanner = new Scanner(System.in);
+    private boolean stopProgram = false;
+    private boolean botActive = true;
+    private final Map<String, ChatAction> chatActions = new HashMap<>();
 
     public Chat(File logFile) {
         this.logFile = logFile;
+
+        initActions();
+    }
+
+    private void initActions() {
+        chatActions.put("закончить", () -> stopProgram = true);
+        chatActions.put("стоп", () -> botActive = false);
+        chatActions.put("продолжить", () -> botActive = true);
+    }
+
+    private interface ChatAction {
+        void execute();
     }
 
     private void printText(String text, BufferedOutputStream log) {
@@ -23,24 +38,19 @@ public class Chat {
     }
 
     public void runChat(Bot b) {
-        boolean terminate = false;
-        boolean runBot = true;
+        stopProgram = false;
         try (BufferedOutputStream log = new BufferedOutputStream(new FileOutputStream(this.logFile))) {
             do {
                 String userText = scanner.nextLine();
-                terminate = userText.toLowerCase().equals("закончить");
-                printText("user: " + userText, log);
-                if (!terminate) {
-                    if (userText.toLowerCase().equals("стоп")) {
-                        runBot = false;
-                    } else if (userText.toLowerCase().equals("продолжить")) {
-                        runBot = true;
-                    }
-                    if (runBot) {
-                        printText("bot: " + b.getAnswer(), log);
-                    }
+                ChatAction action = chatActions.get(userText);
+                if (action != null) {
+                    action.execute();
                 }
-            } while (!terminate);
+                printText("user: " + userText, log);
+                if ((!this.stopProgram) && botActive) {
+                    printText("bot: " + b.getAnswer(), log);
+                }
+            } while (!this.stopProgram);
         } catch (Exception e) {
             e.printStackTrace();
         }
