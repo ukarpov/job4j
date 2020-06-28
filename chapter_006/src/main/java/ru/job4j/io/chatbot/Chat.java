@@ -19,13 +19,13 @@ public class Chat {
     }
 
     private void initActions() {
-        chatActions.put("закончить", () -> stopProgram = true);
-        chatActions.put("стоп", () -> botActive = false);
-        chatActions.put("продолжить", () -> botActive = true);
+        chatActions.put("закончить", (String t, BufferedOutputStream l, Bot b) -> {stopProgram = true; outputText(t, l, b);});
+        chatActions.put("стоп", (String t, BufferedOutputStream l, Bot b) -> {botActive = false; outputText(t, l, b);});
+        chatActions.put("продолжить", (String t, BufferedOutputStream l, Bot b) -> {botActive = true; outputText(t, l, b);});
     }
 
     private interface ChatAction {
-        void execute();
+        void execute(String text, BufferedOutputStream log, Bot b);
     }
 
     private void printText(String text, BufferedOutputStream log) {
@@ -37,19 +37,19 @@ public class Chat {
         }
     }
 
+    private void outputText(String text, BufferedOutputStream log, Bot b) {
+        printText("user: " + text, log);
+        if ((!this.stopProgram) && botActive) {
+            printText("bot: " + b.getAnswer(), log);
+        }
+    }
+
     public void runChat(Bot b) {
         stopProgram = false;
         try (BufferedOutputStream log = new BufferedOutputStream(new FileOutputStream(this.logFile))) {
             do {
                 String userText = scanner.nextLine();
-                ChatAction action = chatActions.get(userText);
-                if (action != null) {
-                    action.execute();
-                }
-                printText("user: " + userText, log);
-                if ((!this.stopProgram) && botActive) {
-                    printText("bot: " + b.getAnswer(), log);
-                }
+                chatActions.getOrDefault(userText, this::outputText).execute(userText, log, b);
             } while (!this.stopProgram);
         } catch (Exception e) {
             e.printStackTrace();
