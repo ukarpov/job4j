@@ -57,8 +57,8 @@ public class Chat {
     }
 
     public static void main(String[] args) {
-        Chat ch = new Chat(new File("c:\\projects\\job4j\\chapter_006\\data\\chatLog.txt"));
-        Bot b = new Bot(new File("c:\\projects\\job4j\\chapter_006\\data\\bot.txt"));
+        Chat ch = new Chat(new File("chapter_006\\data\\chatLog.txt"));
+        Bot b = new Bot(new File("chapter_006\\data\\bot.txt"));
         ch.runChat(b);
     }
 }
