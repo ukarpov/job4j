@@ -1,11 +1,13 @@
 package ru.job4j.io;
 
+import java.util.regex.Pattern;
+
 public class FindArgs {
     private final String[] args;
     private String dir = "";
     private String mask = "";
     private String out = "";
-    private String regexp;
+    private Pattern regexp;
     private FindModes mode;
     private boolean is_valid = true;
 
@@ -55,8 +57,10 @@ public class FindArgs {
     private void setMode(FindModes mode) {
         if (this.mode == null) {
             this.mode = mode;
-            if (this.mode == FindModes.BY_MASK || this.mode == FindModes.BY_REGEXP) {
-                regexp = this.mask.replace(".", "\\.").replace("*", ".*");
+            if (this.mode == FindModes.BY_MASK) {
+                regexp = Pattern.compile("^" + this.mask.replace(".", "\\.").replace("*", ".*") + "$");
+            } else if (this.mode == FindModes.BY_REGEXP) {
+                regexp = Pattern.compile(this.mask);
             }
         } else {
             System.out.println("Multiply modes parameter");
@@ -95,7 +99,7 @@ public class FindArgs {
         return mask;
     }
 
-    public String regexp() {
+    public Pattern regexp() {
         return regexp;
     }
 

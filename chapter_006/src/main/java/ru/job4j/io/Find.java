@@ -17,8 +17,8 @@ public class Find {
 
     private void initFindModes(FindArgs params) {
         findModes.put(FindArgs.FindModes.BY_EXACT, path -> path.getFileName().toString().equals(params.mask()));
-        findModes.put(FindArgs.FindModes.BY_MASK, path -> path.getFileName().toString().matches(params.regexp()));
-        findModes.put(FindArgs.FindModes.BY_REGEXP, path -> path.getFileName().toString().matches(params.regexp()));
+        findModes.put(FindArgs.FindModes.BY_MASK, path -> params.regexp().matcher(path.getFileName().toString()).matches());
+        findModes.put(FindArgs.FindModes.BY_REGEXP, path -> params.regexp().matcher(path.getFileName().toString()).matches());
     }
 
     private static void print2StreamNoEx(String text, BufferedOutputStream s) {
@@ -46,7 +46,7 @@ public class Find {
     public static void main(String[] args) {
 //        ArrayList<String> myArgs = new ArrayList<>();
 //        myArgs.add("-d"); myArgs.add("j:\\Work\\tmp\\searchResult");
-//        myArgs.add("-n"); myArgs.add("*.sql");
+//        myArgs.add("-n"); myArgs.add("*.txt");
 //        myArgs.add("-m");
 //        myArgs.add("-o"); myArgs.add("j:\\Work\\tmp\\searchResult\\search_result.txt");
 //        FindArgs params = new FindArgs(myArgs.toArray(new String[0]));
