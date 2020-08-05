@@ -13,11 +13,9 @@ SELECT p.name,
  WHERE t.name = 'СЫР';
 
 -- 2. Написать запрос получения всех продуктов, у кого в имени есть слово "мороженное"
-SELECT p.name,
-       t.name
+SELECT p.*
   FROM product p
-       JOIN type t ON p.type_id = t.id
- WHERE lower(t.name) LIKE '%мороженное%';
+ WHERE lower(p.name) LIKE '%мороженное%';
 
 -- 3. Написать запрос, который выводит все продукты, срок годности которых заканчивается в следующем месяце.
 SELECT p.*
