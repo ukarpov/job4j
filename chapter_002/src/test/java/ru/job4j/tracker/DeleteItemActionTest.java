@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class DeleteItemActionTest {
     @Test
     public void whenDeleteItem() {
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {

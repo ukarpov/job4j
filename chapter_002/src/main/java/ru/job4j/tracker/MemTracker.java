@@ -3,8 +3,12 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Tracker {
+public class MemTracker implements Store {
     private final ArrayList<Item> items = new ArrayList<>();
+
+    @Override
+    public void init() {
+    }
 
     /**
      * Метод реализаущий добавление заявки в хранилище
@@ -116,5 +120,9 @@ public class Tracker {
      */
     public void clear() {
         this.items.clear();
+    }
+
+    @Override
+    public void close() throws Exception {
     }
 }

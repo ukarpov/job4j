@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public enum TrackerSingleton1 {
     INSTANCE;
 
-    private final Tracker t;
+    private final MemTracker t;
 
     {
-        t = new Tracker();
+        t = new MemTracker();
     }
 
     public Item add(Item item) {

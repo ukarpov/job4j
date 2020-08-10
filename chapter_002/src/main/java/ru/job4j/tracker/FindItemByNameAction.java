@@ -9,7 +9,7 @@ public class FindItemByNameAction extends AbstractAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         String key = input.askStr("Enter name: ");
         ArrayList<Item> items = tracker.findByName(key);
         for (Item itm : items) {

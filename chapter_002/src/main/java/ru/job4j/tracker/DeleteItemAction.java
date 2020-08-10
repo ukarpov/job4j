@@ -7,7 +7,7 @@ public class DeleteItemAction extends AbstractAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         String itemId = input.askStr("Enter id: ");
         if (!tracker.delete(itemId)) {
             System.out.println("Item not found!");

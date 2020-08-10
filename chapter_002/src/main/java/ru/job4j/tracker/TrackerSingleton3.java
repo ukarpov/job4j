@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class TrackerSingleton3 {
     private static TrackerSingleton3 instance = new TrackerSingleton3();
-    private final Tracker t;
+    private final MemTracker t;
 
     private TrackerSingleton3() {
-        this.t = new Tracker();
+        this.t = new MemTracker();
     }
 
     public static TrackerSingleton3 getInstance() {

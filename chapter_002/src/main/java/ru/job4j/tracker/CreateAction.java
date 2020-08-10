@@ -7,7 +7,7 @@ public class CreateAction extends AbstractAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         tracker.add(item);

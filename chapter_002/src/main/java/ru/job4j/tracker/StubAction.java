@@ -8,7 +8,7 @@ public class StubAction extends AbstractAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         call = true;
         return false;
     }

@@ -9,7 +9,7 @@ public class ShowAllAction extends AbstractAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         ArrayList<Item> items = tracker.findAll();
         for (Item itm : items) {
             System.out.println(itm.getId() + ": " + itm.getName());

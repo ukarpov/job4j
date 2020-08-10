@@ -7,7 +7,7 @@ public class ExitAction extends AbstractAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         return false;
     }
 }

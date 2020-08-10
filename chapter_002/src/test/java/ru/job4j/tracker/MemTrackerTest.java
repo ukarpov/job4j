@@ -8,10 +8,10 @@ import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
-public class TrackerTest {
+public class MemTrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test1");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
@@ -20,7 +20,7 @@ public class TrackerTest {
 
     @Test
     public void whenReplaceNameThenReturnNewName() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item previous = new Item("test1");
         tracker.add(previous);
         Item next = new Item("test2");
@@ -31,7 +31,7 @@ public class TrackerTest {
 
     @Test
     public void whenDeleteThenReturnNull() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item i1 = new Item("test1");
         tracker.add(i1);
         tracker.delete(i1.getId());
@@ -40,7 +40,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindAll() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item i1 = new Item("test1");
         tracker.add(i1);
         Item i2 = new Item("test2");
@@ -52,7 +52,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindByName() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item i1 = new Item("test1");
         tracker.add(i1);
         Item i2 = new Item("test2");
@@ -66,7 +66,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindByNameNotFound() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item i1 = new Item("test1");
         tracker.add(i1);
         Item i2 = new Item("test2");
@@ -79,7 +79,7 @@ public class TrackerTest {
 
     @Test
     public void whenClearAllItems() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item i1 = new Item("test1");
         tracker.add(i1);
         Item i2 = new Item("test2");

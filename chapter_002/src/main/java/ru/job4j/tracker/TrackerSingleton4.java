@@ -3,10 +3,10 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 
 public class TrackerSingleton4 {
-    private final Tracker t;
+    private final MemTracker t;
 
     private TrackerSingleton4() {
-        this.t = new Tracker();
+        this.t = new MemTracker();
     }
 
     public static TrackerSingleton4 getInstance() {

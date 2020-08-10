@@ -7,7 +7,7 @@ public class EditItemAction extends AbstractAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         String itemId = input.askStr("Enter id: ");
         Item itm = new Item(input.askStr("Enter new name: "));
         if (!tracker.replace(itemId, itm)) {
