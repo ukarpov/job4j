@@ -55,8 +55,8 @@ public class TrackerSingleton4Test {
         tracker.add(i1);
         Item i2 = new Item("test2");
         tracker.add(i2);
-        ArrayList<Item> allItems = tracker.findAll();
-        ArrayList<Item> testRes = new ArrayList<>(List.of(i1, i2));
+        List<Item> allItems = tracker.findAll();
+        List<Item> testRes = new ArrayList<>(List.of(i1, i2));
         assertEquals(testRes, allItems);
         tracker.clear();
     }
@@ -70,8 +70,8 @@ public class TrackerSingleton4Test {
         tracker.add(i2);
         Item i3 = new Item("test1");
         tracker.add(i3);
-        ArrayList<Item> allItems = tracker.findByName("test1");
-        ArrayList<Item> testRes = new ArrayList<>(List.of(i1, i3));
+        List<Item> allItems = tracker.findByName("test1");
+        List<Item> testRes = new ArrayList<>(List.of(i1, i3));
         assertEquals(testRes, allItems);
         tracker.clear();
     }
@@ -85,7 +85,7 @@ public class TrackerSingleton4Test {
         tracker.add(i2);
         Item i3 = new Item("test1");
         tracker.add(i3);
-        ArrayList<Item> allItems = tracker.findByName("test5");
+        List<Item> allItems = tracker.findByName("test5");
         assertEquals(new ArrayList<Item>(), allItems);
         tracker.clear();
     }

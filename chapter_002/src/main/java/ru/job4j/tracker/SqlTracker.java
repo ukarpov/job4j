@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class SqlTracker implements Store {
@@ -63,12 +64,12 @@ public class SqlTracker implements Store {
     }
 
     @Override
-    public ArrayList<Item> findAll() {
+    public List<Item> findAll() {
         return getItemsByQuery("SELECT item_id, item_name FROM items ORDER BY item_id");
     }
 
     @Override
-    public ArrayList<Item> findByName(String key) {
+    public List<Item> findByName(String key) {
         return getItemsByQuery("SELECT item_id, item_name FROM items WHERE item_name = ? ORDER BY item_id", st -> st.setString(1, key));
     }
 
@@ -76,7 +77,7 @@ public class SqlTracker implements Store {
     public Item findById(String id) {
         Item res = null;
         if (!id.equals("")) {
-            ArrayList<Item> a = getItemsByQuery("SELECT item_id, item_name FROM items WHERE item_id = ?", st -> st.setInt(1, Integer.parseInt(id)));
+            List<Item> a = getItemsByQuery("SELECT item_id, item_name FROM items WHERE item_id = ?", st -> st.setInt(1, Integer.parseInt(id)));
             if (a.size() > 0) {
                 res = a.get(0);
             }
@@ -94,7 +95,7 @@ public class SqlTracker implements Store {
         return st.executeQuery();
     }
 
-    private ArrayList<Item> getItemsByQuery(String select, ConsumerThrowsSQLEx<PreparedStatement> bindsSet) {
+    private List<Item> getItemsByQuery(String select, ConsumerThrowsSQLEx<PreparedStatement> bindsSet) {
         ArrayList<Item> res = new ArrayList<>();
         try {
             ResultSet r = runSelect(select, bindsSet);
@@ -107,7 +108,7 @@ public class SqlTracker implements Store {
         return res;
     }
 
-    private ArrayList<Item> getItemsByQuery(String select) {
+    private List<Item> getItemsByQuery(String select) {
         return getItemsByQuery(select, s -> { });
     }
 

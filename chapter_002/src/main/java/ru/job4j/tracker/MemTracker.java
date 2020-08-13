@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MemTracker implements Store {
@@ -70,7 +71,7 @@ public class MemTracker implements Store {
      * Возвращает массив заявок
      * @return новый массив не-null элементов
      */
-    public ArrayList<Item> findAll() {
+    public List<Item> findAll() {
         return this.items;
     }
 
@@ -79,7 +80,7 @@ public class MemTracker implements Store {
      * @param key
      * @return Массив найденных элементов
      */
-    public ArrayList<Item> findByName(String key) {
+    public List<Item> findByName(String key) {
         ArrayList<Item> result = new ArrayList<>();
         for (Item itm : this.items) {
             if (itm.getName().equals(key)) {

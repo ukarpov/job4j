@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ShowAllAction extends AbstractAction {
 
@@ -10,7 +10,7 @@ public class ShowAllAction extends AbstractAction {
 
     @Override
     public boolean execute(Input input, Store tracker) {
-        ArrayList<Item> items = tracker.findAll();
+        List<Item> items = tracker.findAll();
         for (Item itm : items) {
             System.out.println(itm.getId() + ": " + itm.getName());
         }
