@@ -37,17 +37,15 @@ public class SqlTracker implements Store {
 
     @Override
     public Item add(Item item) {
-        int itemId = -1;
-        try {
-            ResultSet r = runSelect("INSERT INTO items(item_name) VALUES(?) RETURNING item_id", s -> s.setString(1, item.getName()));
+        final int[] itemId = new int[1];
+        runSelect("INSERT INTO items(item_name) VALUES(?) RETURNING item_id", s -> s.setString(1, item.getName()), r -> {
             while (r.next()) {
-                itemId = r.getInt("item_id");
-                item.setId(String.valueOf(itemId));
+                itemId[0] = r.getInt("item_id");
             }
-        } catch (SQLException e) {
-            LOG.error(e);
-        }
-        return findById(String.valueOf(itemId));
+        });
+        String itemIdStr = String.valueOf(itemId[0]);
+        item.setId(itemIdStr);
+        return findById(itemIdStr);
     }
 
     @Override
@@ -89,22 +87,22 @@ public class SqlTracker implements Store {
         void accept(T t) throws SQLException;
     }
 
-    private ResultSet runSelect(String select, ConsumerThrowsSQLEx<PreparedStatement> bindsSet) throws SQLException {
-        PreparedStatement st = cn.prepareStatement(select);
-        bindsSet.accept(st);
-        return st.executeQuery();
+    private void runSelect(String select, ConsumerThrowsSQLEx<PreparedStatement> bindsSet, ConsumerThrowsSQLEx<ResultSet> rsCons) {
+        try (PreparedStatement st = cn.prepareStatement(select)) {
+            bindsSet.accept(st);
+            rsCons.accept(st.executeQuery());
+        } catch (SQLException e) {
+            LOG.error(e);
+        }
     }
 
     private List<Item> getItemsByQuery(String select, ConsumerThrowsSQLEx<PreparedStatement> bindsSet) {
         ArrayList<Item> res = new ArrayList<>();
-        try {
-            ResultSet r = runSelect(select, bindsSet);
+        runSelect(select, bindsSet, r -> {
             while (r.next()) {
                 res.add(resultRow2Item(r));
             }
-        } catch (SQLException e) {
-            LOG.error(e);
-        }
+        });
         return res;
     }
 
@@ -114,8 +112,7 @@ public class SqlTracker implements Store {
 
     private int runDML(String select, ConsumerThrowsSQLEx<PreparedStatement> bindsSet) {
         int res = 0;
-        try {
-            PreparedStatement st = cn.prepareStatement(select);
+        try (PreparedStatement st = cn.prepareStatement(select)) {
             bindsSet.accept(st);
             res = st.executeUpdate();
         } catch (SQLException e) {
