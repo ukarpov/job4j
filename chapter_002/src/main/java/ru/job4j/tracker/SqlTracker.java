@@ -13,18 +13,27 @@ public class SqlTracker implements Store {
     private Connection cn;
     private static final Logger LOG = LogManager.getLogger(SqlTracker.class.getName());
 
+    public SqlTracker() {
+    }
+
+    public SqlTracker(Connection connection) {
+        this.cn = connection;
+    }
+
     public void init() {
-        try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
-            Properties config = new Properties();
-            config.load(in);
-            Class.forName(config.getProperty("driver-class-name"));
-            cn = DriverManager.getConnection(
-                    config.getProperty("url"),
-                    config.getProperty("username"),
-                    config.getProperty("password")
-            );
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
+        if (cn == null) {
+            try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
+                Properties config = new Properties();
+                config.load(in);
+                Class.forName(config.getProperty("driver-class-name"));
+                cn = DriverManager.getConnection(
+                        config.getProperty("url"),
+                        config.getProperty("username"),
+                        config.getProperty("password")
+                );
+            } catch (Exception e) {
+                throw new IllegalStateException(e);
+            }
         }
     }
 
