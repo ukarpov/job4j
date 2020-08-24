@@ -5,12 +5,12 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 public class MyHashMap<K, V> implements Iterable {
-    private final int EXTENT_SIZE = 4;
+    private final int extentSize = 4;
     private Node[] table;
     private int size = 0;
 
     public MyHashMap() {
-        size = EXTENT_SIZE;
+        size = extentSize;
         table = new Node[size];
     }
 
@@ -20,7 +20,7 @@ public class MyHashMap<K, V> implements Iterable {
 
     private void resize() {
         Node[] old = table;
-        size = (table.length + EXTENT_SIZE);
+        size = (table.length + extentSize);
         table = new Node[size];
         for (int i = 0; i < old.length; i++) {
             int newIdx = getIndex(old[i].key.hashCode());

@@ -46,7 +46,7 @@ public class DynamicContainerTest {
         boolean wasError = false;
         try {
             it.hasNext();
-        } catch(ConcurrentModificationException cme) {
+        } catch (ConcurrentModificationException cme) {
             wasError = true;
         }
         assertTrue(wasError);

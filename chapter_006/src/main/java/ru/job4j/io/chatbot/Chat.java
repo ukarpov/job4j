@@ -19,9 +19,18 @@ public class Chat {
     }
 
     private void initActions() {
-        chatActions.put("закончить", (String t, BufferedOutputStream l, Bot b) -> {stopProgram = true; outputText(t, l, b);});
-        chatActions.put("стоп", (String t, BufferedOutputStream l, Bot b) -> {botActive = false; outputText(t, l, b);});
-        chatActions.put("продолжить", (String t, BufferedOutputStream l, Bot b) -> {botActive = true; outputText(t, l, b);});
+        chatActions.put("закончить", (String t, BufferedOutputStream l, Bot b) -> {
+            stopProgram = true;
+            outputText(t, l, b);
+        });
+        chatActions.put("стоп", (String t, BufferedOutputStream l, Bot b) -> {
+            botActive = false;
+            outputText(t, l, b);
+        });
+        chatActions.put("продолжить", (String t, BufferedOutputStream l, Bot b) -> {
+            botActive = true;
+            outputText(t, l, b);
+        });
     }
 
     private interface ChatAction {

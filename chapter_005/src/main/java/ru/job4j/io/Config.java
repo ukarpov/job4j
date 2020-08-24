@@ -31,7 +31,7 @@ public class Config {
                     value = setting[1];
                 } else {
                     value = "";
-                };
+                }
                 values.put(setting[0], value);
             }
         }

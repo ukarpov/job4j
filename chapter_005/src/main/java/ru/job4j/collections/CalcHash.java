@@ -18,13 +18,17 @@ public class CalcHash {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         CalcHash calcHash = (CalcHash) o;
-        return num == calcHash.num &&
-                b == calcHash.b &&
-                Objects.equals(str, calcHash.str) &&
-                Objects.equals(u, calcHash.u);
+        return num == calcHash.num
+               && b == calcHash.b
+               && Objects.equals(str, calcHash.str)
+               && Objects.equals(u, calcHash.u);
     }
 
     private int addHash(int hash, int add) {

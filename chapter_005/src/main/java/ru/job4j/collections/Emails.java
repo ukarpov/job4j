@@ -26,8 +26,12 @@ public class Emails {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Emails emails1 = (Emails) o;
         return emailsIntersects(emails, emails1.emails);
     }
@@ -68,11 +72,15 @@ public class Emails {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             Node node = (Node) o;
-            return Objects.equals(user, node.user) &&
-                    Objects.equals(email, node.email);
+            return Objects.equals(user, node.user)
+                   && Objects.equals(email, node.email);
         }
 
         @Override
@@ -118,17 +126,15 @@ public class Emails {
         //ArrayList<String> emails = new ArrayList<>();
         //boolean[][] links = new boolean[users.size()][emails.size()];
 
-
-
         Map<String, Set<String>> result = new HashMap<>();
         return result;
     }
 
     @Override
     public String toString() {
-        return "Emails{" +
-                "emails=" + emails +
-                '}';
+        return "Emails{"
+               + "emails=" + emails
+               + '}';
     }
 
     public static void main(String[] args) {

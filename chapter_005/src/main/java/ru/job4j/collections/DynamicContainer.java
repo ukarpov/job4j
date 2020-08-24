@@ -5,14 +5,14 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class DynamicContainer<E> implements Iterable<E> {
-    private final int INITIAL_SIZE = 10;
+    private final int initialSize = 10;
 
     private E[] array;
     private int arrayIndex = 0;
     private int modCount = 0;
 
     public DynamicContainer() {
-        initArray(INITIAL_SIZE);
+        initArray(initialSize);
     }
 
     public DynamicContainer(int size) {

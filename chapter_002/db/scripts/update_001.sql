@@ -1,3 +1,5 @@
+
+
 CREATE TABLE rules (
 	rule_id   serial PRIMARY KEY,
 	rule_code varchar,
@@ -113,4 +115,47 @@ SELECT 'User1', 'qwer', (SELECT role_id FROM roles WHERE role_code = 'USER') UNI
 SELECT 'Supervisor1', 'asdf', (SELECT role_id FROM roles WHERE role_code = 'SUPERVISOR');
 
 COMMIT;
+
+CREATE ROLE tracker_app WITH
+  LOGIN
+  NOSUPERUSER
+  INHERIT
+  NOCREATEDB
+  NOCREATEROLE
+  NOREPLICATION
+  ENCRYPTED PASSWORD 'md5ea6398b5d4377c1bde31e8b8b2fc910e';
+
+GRANT ALL ON SEQUENCE public.item_attaches_attach_id_seq TO tracker_app;
+
+GRANT ALL ON SEQUENCE public.item_comments_comment_id_seq TO tracker_app;
+
+GRANT ALL ON SEQUENCE public.items_item_id_seq TO tracker_app;
+
+GRANT ALL ON SEQUENCE public.roles_role_id_seq TO tracker_app;
+
+GRANT ALL ON SEQUENCE public.rules_rule_id_seq TO tracker_app;
+
+GRANT ALL ON SEQUENCE public.users_user_id_seq TO tracker_app;
+
+GRANT ALL ON TABLE public.category TO tracker_app;
+
+GRANT ALL ON TABLE public.databasechangelog TO tracker_app;
+
+GRANT ALL ON TABLE public.databasechangeloglock TO tracker_app;
+
+GRANT ALL ON TABLE public.item_attaches TO tracker_app;
+
+GRANT ALL ON TABLE public.item_comments TO tracker_app;
+
+GRANT ALL ON TABLE public.items TO tracker_app;
+
+GRANT ALL ON TABLE public.role_rules TO tracker_app;
+
+GRANT ALL ON TABLE public.roles TO tracker_app;
+
+GRANT ALL ON TABLE public.rules TO tracker_app;
+
+GRANT ALL ON TABLE public.status TO tracker_app;
+
+GRANT ALL ON TABLE public.users TO tracker_app;
 

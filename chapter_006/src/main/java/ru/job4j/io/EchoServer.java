@@ -18,7 +18,10 @@ public class EchoServer {
     }
 
     private void initActions() {
-        serverActions.put("Exit", (OutputStream o, String t) -> {keepRunning = false; answer(o, "Server stopped");});
+        serverActions.put("Exit", (OutputStream o, String t) -> {
+            keepRunning = false;
+            answer(o, "Server stopped");
+        });
     }
 
     private interface ServerAction {

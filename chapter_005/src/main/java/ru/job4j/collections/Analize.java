@@ -42,8 +42,12 @@ public class Analize {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             User user = (User) o;
             return id == user.id;
         }
@@ -61,11 +65,11 @@ public class Analize {
 
         @Override
         public String toString() {
-            return "Info{" +
-                    "added=" + added +
-                    ", changed=" + changed +
-                    ", deleted=" + deleted +
-                    '}';
+            return "Info{"
+                    + "added=" + added
+                    + ", changed=" + changed
+                    + ", deleted=" + deleted
+                    + '}';
         }
     }
 
@@ -75,7 +79,7 @@ public class Analize {
 
         User u1 = new User(1, "User1");
         User u2 = new User(5, "User2");
-        User u2_2 = new User(5, "User2_2");
+        User u22 = new User(5, "User2_2");
         User u3 = new User(11, "User3");
         User u4 = new User(15, "User4");
         User u5 = new User(2, "User5");
@@ -84,7 +88,7 @@ public class Analize {
         prev.add(u2);
         prev.add(u3);
 
-        current.add(u2_2);
+        current.add(u22);
         current.add(u3);
         current.add(u4);
         current.add(u5);

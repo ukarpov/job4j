@@ -15,7 +15,7 @@ public class AnalizeTest {
 
         Analize.User u1 = new Analize.User(1, "User1");
         Analize.User u2 = new Analize.User(5, "User2");
-        Analize.User u2_2 = new Analize.User(5, "User2_2");
+        Analize.User u22 = new Analize.User(5, "User2_2");
         Analize.User u3 = new Analize.User(11, "User3");
         Analize.User u4 = new Analize.User(15, "User4");
         Analize.User u5 = new Analize.User(2, "User5");
@@ -24,7 +24,7 @@ public class AnalizeTest {
         prev.add(u2);
         prev.add(u3);
 
-        current.add(u2_2);
+        current.add(u22);
         current.add(u3);
         current.add(u4);
         current.add(u5);

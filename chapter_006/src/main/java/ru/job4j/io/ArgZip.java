@@ -6,7 +6,7 @@ public class ArgZip {
     private String dir = "";
     private String ext = "";
     private String out = "";
-    private boolean is_valid = true;
+    private boolean isValid = true;
 
     public ArgZip(String[] args) {
         this.args = args;
@@ -15,12 +15,12 @@ public class ArgZip {
     private void checkParam(String param, String msg) {
         if (param.equals("")) {
             System.out.println(msg);
-            is_valid = false;
+            isValid = false;
         }
     }
 
     public void validate() {
-        for(int i = 0; i < this.args.length; i++) {
+        for (int i = 0; i < this.args.length; i++) {
             switch (this.args[i]) {
                 case "-d":
                     dir = this.args[++i];
@@ -33,7 +33,7 @@ public class ArgZip {
                     break;
                 default:
                     System.out.println("Unsupported param " + this.args[i]);
-                    is_valid = false;
+                    isValid = false;
             }
         }
 
@@ -44,7 +44,7 @@ public class ArgZip {
 
     public boolean valid() {
         validate();
-        return is_valid;
+        return isValid;
     }
 
     public String directory() {

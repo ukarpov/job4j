@@ -9,7 +9,7 @@ public class FindArgs {
     private String out = "";
     private Pattern regexp;
     private FindModes mode;
-    private boolean is_valid = true;
+    private boolean isValid = true;
 
     public FindArgs(String[] args) {
         this.args = args;
@@ -22,7 +22,7 @@ public class FindArgs {
     }
 
     public void validate() {
-        for(int i = 0; i < this.args.length; i++) {
+        for (int i = 0; i < this.args.length; i++) {
             switch (this.args[i]) {
                 case "-d":
                     dir = this.args[++i];
@@ -44,7 +44,7 @@ public class FindArgs {
                     break;
                 default:
                     System.out.println("Unsupported param " + this.args[i]);
-                    is_valid = false;
+                    isValid = false;
             }
         }
 
@@ -64,27 +64,27 @@ public class FindArgs {
             }
         } else {
             System.out.println("Multiply modes parameter");
-            is_valid = false;
+            isValid = false;
         }
     }
 
     private void checkParam(String p, String msg) {
         if (p.equals("")) {
             System.out.println(msg);
-            is_valid = false;
+            isValid = false;
         }
     }
 
     private void checkParam(FindModes param, String msg) {
         if (param == null) {
             System.out.println(msg);
-            is_valid = false;
+            isValid = false;
         }
     }
 
     public boolean valid() {
         validate();
-        return is_valid;
+        return isValid;
     }
 
     public String directory() {
@@ -109,11 +109,11 @@ public class FindArgs {
 
     public static void printHelp() {
         System.out.println(
-                "Ключи" + System.lineSeparator() +
-                "    -d - директория в которая начинать поиск." + System.lineSeparator() +
-                "    -n - имя файл, маска, либо регулярное выражение." + System.lineSeparator() +
-                "    -m - искать по макс, либо -f - полное совпадение имени. -r регулярное выражение." + System.lineSeparator() +
-                "    -o - результат записать в файл." + System.lineSeparator() + System.lineSeparator() +
-                "Пример: java -jar find.jar -d c:/ -n *.txt -m -o log.txt");
+                "Ключи" + System.lineSeparator()
+                + "    -d - директория в которая начинать поиск." + System.lineSeparator()
+                + "    -n - имя файл, маска, либо регулярное выражение." + System.lineSeparator()
+                + "    -m - искать по макс, либо -f - полное совпадение имени. -r регулярное выражение." + System.lineSeparator()
+                + "    -o - результат записать в файл." + System.lineSeparator() + System.lineSeparator()
+                + "Пример: java -jar find.jar -d c:/ -n *.txt -m -o log.txt");
     }
 }
