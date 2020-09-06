@@ -83,4 +83,40 @@ public class ReportEngineTest {
                 .append(System.lineSeparator());
         assertThat(engine.generate(), is(expect.toString()));
     }
+
+    @Test
+    public void whenOutputToXML() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(worker);
+        ReportEngine engine = new ReportEngine(store, new HREmpReportFactory());
+        engine.setOutput(new XMLOutput());
+        StringBuilder expect = new StringBuilder()
+                .append("<ROOT>").append(System.lineSeparator())
+                .append("<ROW>")
+                .append("<Name>").append(worker.getName()).append("</Name>")
+                .append("<Salary>").append(worker.getSalary()).append("</Salary>")
+                .append("</ROW>").append(System.lineSeparator())
+                .append("</ROOT>");
+        assertThat(engine.generate(false), is(expect.toString()));
+    }
+
+    @Test
+    public void whenOutputToJSON() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(worker);
+        ReportEngine engine = new ReportEngine(store, new HREmpReportFactory());
+        engine.setOutput(new JSONOutput());
+        StringBuilder expect = new StringBuilder()
+                .append("{[").append(System.lineSeparator())
+                .append("{")
+                .append("Name: ").append(worker.getName()).append(", " + System.lineSeparator())
+                .append("Salary: ").append(worker.getSalary()).append(", " + System.lineSeparator())
+                .append("}").append(System.lineSeparator())
+                .append("]}");
+        assertThat(engine.generate(false), is(expect.toString()));
+    }
 }

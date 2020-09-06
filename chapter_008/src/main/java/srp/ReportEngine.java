@@ -7,7 +7,7 @@ public class ReportEngine {
     private final Store store;
     private final Predicate filter;
     private final Comparator cmp;
-    private final Output out;
+    private Output out;
     private final RowBuilder rb;
 
     public ReportEngine(Store store, ReportFactory reportFactory) {
@@ -18,13 +18,23 @@ public class ReportEngine {
         this.rb = reportFactory.getRowBuilder();
     }
 
-    public String generate() {
-        out.append(rb.buildFirstRow());
+    public String generate(boolean printHeader) {
+        if (printHeader) {
+            out.append(rb.buildFirstRow());
+        }
         var el = store.findBy(filter);
         el.sort(cmp);
         for (var row : el) {
             out.append(rb.buildRow(row));
         }
         return out.getResult();
+    }
+
+    public String generate() {
+        return generate(true);
+    }
+
+    public void setOutput(Output newOut) {
+        this.out = newOut;
     }
 }
