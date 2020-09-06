@@ -18,24 +18,13 @@ public class ReportEngine {
         this.rb = reportFactory.getRowBuilder();
     }
 
-    // формат вывода (вывод) >> Output
-    // состав вывода (поля, формат полей) >>
-    // **сортировка >> кампаратор
-
     public String generate() {
-        //StringBuilder text = new StringBuilder();
-        //text.append("Name; Hired; Fired; Salary");
         out.append(rb.buildFirstRow());
         var el = store.findBy(filter);
         el.sort(cmp);
         for (var row : el) {
             out.append(rb.buildRow(row));
-//            text.append(employee.getName()).append(";")
-//                    .append(employee.getHired()).append(";")
-//                    .append(employee.getFired()).append(";")
-//                    .append(employee.getSalary()).append(";");
         }
-        //return text.toString();
-        return out.getStringResult();
+        return out.getResult();
     }
 }

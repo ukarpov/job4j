@@ -1,15 +1,19 @@
 package srp;
 
+import java.util.List;
+
 public class HTMLOutput implements Output {
     final StringBuilder sb = new StringBuilder();
 
     @Override
-    public void append(String s) {
-        sb.append(s).append(System.lineSeparator());
+    public void append(List<ReportCell> columns) {
+        sb.append("<tr>");
+        columns.forEach(s -> sb.append("<th>").append(s.getColumnValue()).append("</th>"));
+        sb.append("</tr>").append(System.lineSeparator());
     }
 
     @Override
-    public String getStringResult() {
-        return "<html><body>" + System.lineSeparator() + sb.toString() + "</body></html>";
+    public String getResult() {
+        return "<html><body><table>" + System.lineSeparator() + sb.toString() + "</table></body></html>";
     }
 }

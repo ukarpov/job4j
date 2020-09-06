@@ -37,15 +37,15 @@ public class ReportEngineTest {
         ReportEngine engine = new ReportEngine(store, new ITEmpReportFactory());
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         StringBuilder expect = new StringBuilder()
-                .append("<html><body>").append(System.lineSeparator())
-                .append("Name; Hired; Fired; Salary; ")
-                .append(System.lineSeparator())
-                .append(worker.getName()).append("; ")
-                .append(sdf.format(worker.getHired().getTime())).append("; ")
-                .append(sdf.format(worker.getFired().getTime())).append("; ")
-                .append(worker.getSalary()).append("; ")
-                .append(System.lineSeparator())
-                .append("</body></html>");
+                .append("<html><body><table>").append(System.lineSeparator())
+                .append("<tr><th>Name</th><th>Hired</th><th>Fired</th><th>Salary</th></tr>").append(System.lineSeparator())
+                .append("<tr>")
+                .append("<th>").append(worker.getName()).append("</th>")
+                .append("<th>").append(sdf.format(worker.getHired().getTime())).append("</th>")
+                .append("<th>").append(sdf.format(worker.getFired().getTime())).append("</th>")
+                .append("<th>").append(worker.getSalary()).append("</th>")
+                .append("</tr>").append(System.lineSeparator())
+                .append("</table></body></html>");
         assertThat(engine.generate(), is(expect.toString()));
     }
 

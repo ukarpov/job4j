@@ -3,6 +3,6 @@ package srp;
 import java.util.List;
 
 public interface RowBuilder<T> {
-    String buildRow(T data);
-    String buildFirstRow();
+    List<ReportCell> buildRow(T data);
+    List<ReportCell> buildFirstRow();
 }

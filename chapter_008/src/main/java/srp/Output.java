@@ -1,6 +1,8 @@
 package srp;
 
+import java.util.List;
+
 public interface Output {
-    void append(String s);
-    String getStringResult();
+    void append(List<ReportCell> columns);
+    String getResult();
 }
