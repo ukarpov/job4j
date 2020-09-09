@@ -8,7 +8,7 @@ public class XMLOutput implements Output {
     @Override
     public void append(List<ReportCell> columns) {
         sb.append("<ROW>");
-        columns.forEach(s -> sb.append("<"+s.getColumnName()+">").append(s.getColumnValue()).append("</"+s.getColumnName()+">"));
+        columns.forEach(s -> sb.append("<" + s.getColumnName() + ">").append(s.getColumnValue()).append("</" + s.getColumnName() + ">"));
         sb.append("</ROW>").append(System.lineSeparator());
     }
 

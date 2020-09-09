@@ -8,7 +8,7 @@ public class JSONOutput implements Output {
     @Override
     public void append(List<ReportCell> columns) {
         sb.append("{");
-        columns.forEach(s -> sb.append(s.getColumnName()+": ").append(s.getColumnValue()).append(", " + System.lineSeparator()));
+        columns.forEach(s -> sb.append(s.getColumnName() + ": ").append(s.getColumnValue()).append(", " + System.lineSeparator()));
         sb.append("}").append(System.lineSeparator());
     }
 
