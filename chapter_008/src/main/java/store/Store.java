@@ -1,6 +1,7 @@
 package store;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public abstract class Store {
@@ -16,7 +17,13 @@ public abstract class Store {
 
     public abstract boolean tryPutInStore(Food f);
 
+    public abstract boolean tryPutInStore(Food f, Calendar dt);
+
     public List<Food> getFood() {
         return new ArrayList<>(food);
+    }
+
+    public void clearStore() {
+        food.clear();
     }
 }

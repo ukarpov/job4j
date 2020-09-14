@@ -57,4 +57,31 @@ public class ControlQualityTest {
         assertTrue(cracker.getDiscount() > 0);
     }
 
+    @Test
+    public void whenResortFromWarehouseToTrash() {
+        Calendar now = Calendar.getInstance();
+        Calendar nowPlus5 = Calendar.getInstance();
+        nowPlus5.add(Calendar.DAY_OF_MONTH, 5);
+
+        Food b = new Banana(now, 20); // lifetime 4 days
+        Store w = new Warehouse();
+        Store s = new Shop();
+        Store t = new Trash();
+
+        ControlQuality cq = new ControlQuality();
+        cq.addStore(w);
+        cq.addStore(s);
+        cq.addStore(t);
+        cq.putFoodInStore(b);
+        assertEquals(Arrays.asList(b), w.getFood());
+        assertEquals(Collections.emptyList(), s.getFood());
+        assertEquals(Collections.emptyList(), t.getFood());
+
+        cq.resort(nowPlus5);
+        assertEquals(Collections.emptyList(), w.getFood());
+        assertEquals(Collections.emptyList(), s.getFood());
+        assertEquals(Arrays.asList(b), t.getFood());
+    }
+
+
 }

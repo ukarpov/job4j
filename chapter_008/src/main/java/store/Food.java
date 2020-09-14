@@ -36,8 +36,12 @@ public abstract class Food {
     }
 
     public float getLifeTimeUsedPct() {
+        return getLifeTimeUsedPct(Calendar.getInstance());
+    }
+
+    public float getLifeTimeUsedPct(Calendar dt) {
         float full = expire.getTimeInMillis() - created.getTimeInMillis();
-        float rest = expire.getTimeInMillis() - clearCalendarTime(Calendar.getInstance()).getTimeInMillis();
+        float rest = expire.getTimeInMillis() - clearCalendarTime(dt).getTimeInMillis();
         return 100 - ((rest / full)  * 100);
     }
 
