@@ -1,5 +1,6 @@
 package cinema;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -27,5 +28,17 @@ public class CinemaTest {
         cinema.add(new Session3D());
         List<Session> sessions = cinema.find(session -> true);
         assertThat(sessions, is(Arrays.asList(new Session3D())));
+    }
+
+    @Test
+    public void whenTicketSoldThenNull() {
+        Account account1 = new AccountCinema();
+        Account account2 = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date = Calendar.getInstance();
+        date.set(2020, 10, 10, 23, 00);
+        Ticket ticket = cinema.buy(account1, 1, 1, date);
+        Ticket ticket2 = cinema.buy(account2, 1, 1, date);
+        assertNull(ticket2);
     }
 }
