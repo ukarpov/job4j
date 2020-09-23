@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 
 public class ParkZone {
-    private final int capacity;
+    private int capacity;
     private final int onePlaceSize;
     private final Predicate<Vehicle> rules;
     private final ArrayList<Vehicle> vehicles;
@@ -17,11 +17,22 @@ public class ParkZone {
     }
 
     private boolean canPlaceVehicle(Vehicle v) {
-        return false;
+        return rules.test(v)
+               && capacity >= v.getSize();
     };
+
     public boolean park(Vehicle v) {
-        return false;
+        boolean res = false;
+        if (canPlaceVehicle(v)) {
+            vehicles.add(v);
+            capacity -= v.getSize();
+            res = true;
+        }
+        return res;
     };
+
     public void remove(Vehicle v) {
+        vehicles.remove(v);
+        capacity += v.getSize();
     };
 }
